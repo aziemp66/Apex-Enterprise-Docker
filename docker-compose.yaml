@@ -1,0 +1,29 @@
+services:
+  windows:
+    image: dockurr/windows
+    container_name: win11
+    environment:
+      VERSION: "tiny11"
+      RAM_SIZE: "8G"
+      CPU_CORES: "4"
+      DISK_SIZE: "64G"
+      USERNAME: "user"
+      PASSWORD: "password"
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - "8006:8006"
+      - "3389:3389/tcp"
+      - "3389:3389/udp"
+      - "1521:1521"
+      - "8080:8080"
+    volumes:
+      - ./win11-box/storage:/storage
+      - ./win11-box/shared:/shared
+      - ./APEX:/oem
+      - ./.env:/oem/.env
+    restart: unless-stopped
+    stop_grace_period: 2m

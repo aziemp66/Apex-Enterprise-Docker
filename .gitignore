@@ -1,0 +1,6 @@
+APEX/*
+!APEX/install.bat
+!APEX/apex_install_silent.sql
+
+win11-box
+.env
